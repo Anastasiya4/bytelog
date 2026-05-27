@@ -53,7 +53,7 @@ const siteHeader     = document.getElementById("site-header");
  */
 function createArticleCard(article) {
   const author   = getAuthorById(article.authorId);
-  const category = getCategoryById(article.category);
+  const category = getCategoryById(article.category) || { color: '', icon: '📄', name: article.category };
 
   return `
     <article class="article-card ${article.featured ? 'featured' : ''}" data-id="${article.id}" data-category="${article.category}">
@@ -102,6 +102,9 @@ function renderArticles() {
 
   // Сховати/показати кнопку "більше"
   loadMoreBtn.style.display = visible.length < filtered.length ? "block" : "none";
+
+  // Після перерендеру — спостерігаємо нові картки для анімації
+  observeNewCards();
 }
 
 
@@ -437,6 +440,13 @@ function observeElements() {
   document.querySelectorAll(
     ".article-card, .author-card, .category-card, .hero-visual, .about-visual"
   ).forEach(el => observer.observe(el));
+}
+
+/** Спостерігати лише нові картки статей після фільтрації */
+function observeNewCards() {
+  // Картки без in-view — ще не анімовані (щойно створені)
+  articlesGrid.querySelectorAll(".article-card:not(.in-view)")
+    .forEach(el => observer.observe(el));
 }
 
 
