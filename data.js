@@ -1,25 +1,3 @@
-/**
- * =============================================================
- *  РОЗДІЛ 4 — Моделі даних для IT-блогу "ByteLog"
- *  Файл: data.js
- * =============================================================
- *
- *  Містить такі моделі:
- *    1. Category   — категорія статей
- *    2. Author     — автор блогу
- *    3. Tag        — тег/ключове слово
- *    4. Article    — стаття блогу
- *    5. Comment    — коментар до статті
- *    6. Subscriber — підписник розсилки
- *
- *  Зв'язки між моделями:
- *    Article  ──[belongs to]──► Category  (article.category = category.id)
- *    Article  ──[belongs to]──► Author    (article.authorId = author.id)
- *    Article  ──[has many]────► Tag       (article.tags = [tag.id, ...])
- *    Article  ──[has many]────► Comment   (comment.articleId = article.id)
- *    Comment  ──[belongs to]──► Author    (comment.authorId = author.id, optional)
- * =============================================================
- */
 
 // ─────────────────────────────────────────────
 //  МОДЕЛЬ 1: Category (Категорія)
