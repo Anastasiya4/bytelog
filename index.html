@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ByteLog — IT Блог</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <span class="logo-bracket">[</span>ByteLog<span class="logo-bracket">]</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-list">
+          <li><a href="#home"      class="nav-link active" data-section="home">Головна</a></li>
+          <li><a href="#articles"  class="nav-link" data-section="articles">Статті</a></li>
+          <li class="nav-dropdown">
+            <a href="#categories" class="nav-link" data-section="categories">Категорії <span class="arrow">▾</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#cat-web"      class="dropdown-link">Веб-розробка</a></li>
+              <li><a href="#cat-ai"       class="dropdown-link">Штучний інтелект</a></li>
+              <li><a href="#cat-security" class="dropdown-link">Кібербезпека</a></li>
+              <li><a href="#cat-devops"   class="dropdown-link">DevOps</a></li>
+              <li><a href="#cat-mobile"   class="dropdown-link">Мобільна розробка</a></li>
+            </ul>
+          </li>
+          <li><a href="#authors"   class="nav-link" data-section="authors">Автори</a></li>
+          <li><a href="#about"     class="nav-link" data-section="about">Про нас</a></li>
+          <li><a href="#contact"   class="nav-link" data-section="contact">Контакти</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn-search" id="search-toggle" aria-label="Пошук">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+        <a href="#subscribe" class="btn-primary">Підписатись</a>
+        <button class="burger" id="burger" aria-label="Меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar" id="search-bar">
+      <div class="search-inner">
+        <input type="text" id="search-input" placeholder="Пошук статей..." autocomplete="off"/>
+        <button class="search-close" id="search-close">✕</button>
+      </div>
+      <div class="search-results" id="search-results"></div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-grid-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">// Ласкаво просимо до IT блогу</p>
+      <h1 class="hero-title">
+        Занурся в світ<br/>
+        <span class="hero-accent">технологій</span>
+      </h1>
+      <p class="hero-desc">
+        Статті, туторіали та новини зі світу веб-розробки, штучного інтелекту,
+        кібербезпеки та сучасних технологій. Для розробників — від розробників.
+      </p>
+      <div class="hero-buttons">
+        <a href="#articles" class="btn-primary btn-lg">Читати статті</a>
+        <a href="#categories" class="btn-ghost btn-lg">Переглянути категорії</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num">120+</span><span class="stat-label">Статей</span></div>
+        <div class="stat"><span class="stat-num">15</span><span class="stat-label">Авторів</span></div>
+        <div class="stat"><span class="stat-num">8K+</span><span class="stat-label">Читачів</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="code-block">
+        <div class="code-header">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="code-title">bytelog.js</span>
+        </div>
+        <pre class="code-content"><span class="c-keyword">const</span> <span class="c-var">blog</span> = {
+  <span class="c-prop">name</span>: <span class="c-str">"ByteLog"</span>,
+  <span class="c-prop">topics</span>: [
+    <span class="c-str">"Web Dev"</span>,
+    <span class="c-str">"AI & ML"</span>,
+    <span class="c-str">"Security"</span>,
+    <span class="c-str">"DevOps"</span>
+  ],
+  <span class="c-prop">articles</span>: <span class="c-num">120</span>,
+  <span class="c-prop">publish</span>: <span class="c-keyword">async</span> () <span class="c-keyword">=></span> {
+    <span class="c-keyword">await</span> share(knowledge);
+    <span class="c-keyword">return</span> <span class="c-str">"🚀 Live!"</span>;
+  }
+};</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FEATURED ARTICLES ===== -->
+  <section class="section" id="articles">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <p class="section-tag">// останні публікації</p>
+          <h2 class="section-title">Статті</h2>
+        </div>
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">Всі</button>
+          <button class="filter-btn" data-filter="web">Веб</button>
+          <button class="filter-btn" data-filter="ai">AI</button>
+          <button class="filter-btn" data-filter="security">Безпека</button>
+          <button class="filter-btn" data-filter="devops">DevOps</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+        </div>
+      </div>
+
+      <div class="articles-grid" id="articles-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="load-more-wrap">
+        <button class="btn-ghost" id="load-more">Завантажити більше</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="section section-dark" id="categories">
+    <div class="container">
+      <p class="section-tag">// теми</p>
+      <h2 class="section-title">Категорії</h2>
+      <div class="categories-grid" id="cat-web">
+        <a href="#" class="category-card cat-web" data-filter="web">
+          <div class="cat-icon">🌐</div>
+          <h3>Веб-розробка</h3>
+          <p>HTML, CSS, JS, React, Vue, Node.js та сучасні фреймворки</p>
+          <span class="cat-count" data-cat="web">0 статей</span>
+        </a>
+        <a href="#" class="category-card cat-ai" id="cat-ai" data-filter="ai">
+          <div class="cat-icon">🤖</div>
+          <h3>Штучний інтелект</h3>
+          <p>ML, Deep Learning, LLM, нейронні мережі та автоматизація</p>
+          <span class="cat-count" data-cat="ai">0 статей</span>
+        </a>
+        <a href="#" class="category-card cat-security" id="cat-security" data-filter="security">
+          <div class="cat-icon">🔐</div>
+          <h3>Кібербезпека</h3>
+          <p>Захист даних, пентестинг, шифрування та вразливості</p>
+          <span class="cat-count" data-cat="security">0 статей</span>
+        </a>
+        <a href="#" class="category-card cat-devops" id="cat-devops" data-filter="devops">
+          <div class="cat-icon">⚙️</div>
+          <h3>DevOps</h3>
+          <p>Docker, CI/CD, Kubernetes, хмарні сервіси та автоматизація</p>
+          <span class="cat-count" data-cat="devops">0 статей</span>
+        </a>
+        <a href="#" class="category-card cat-mobile" id="cat-mobile" data-filter="mobile">
+          <div class="cat-icon">📱</div>
+          <h3>Мобільна розробка</h3>
+          <p>iOS, Android, React Native, Flutter та крос-платформні рішення</p>
+          <span class="cat-count" data-cat="mobile">0 статей</span>
+        </a>
+        <a href="#" class="category-card cat-other" data-filter="all">
+          <div class="cat-icon">💡</div>
+          <h3>Інше</h3>
+          <p>Кар'єра в IT, інструменти, продуктивність та технологічні тренди</p>
+          <span class="cat-count">20+ статей</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AUTHORS ===== -->
+  <section class="section" id="authors">
+    <div class="container">
+      <p class="section-tag">// команда</p>
+      <h2 class="section-title">Автори</h2>
+      <div class="authors-grid" id="authors-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section section-accent" id="about">
+    <div class="container about-layout">
+      <div class="about-text">
+        <p class="section-tag">// про проєкт</p>
+        <h2 class="section-title">Про ByteLog</h2>
+        <p>
+          ByteLog — це незалежний IT-блог, створений розробниками для розробників.
+          Ми публікуємо практичні статті, детальні туторіали та актуальні новини
+          зі світу технологій.
+        </p>
+        <p>
+          Наша місія — зробити технічні знання доступними, зрозумілими та цікавими
+          для всіх: від початківців до досвідчених фахівців.
+        </p>
+        <ul class="about-list">
+          <li>✓ Тільки перевірена інформація від практиків</li>
+          <li>✓ Статті українською мовою</li>
+          <li>✓ Безкоштовний доступ до всіх матеріалів</li>
+          <li>✓ Активна спільнота читачів</li>
+        </ul>
+      </div>
+      <div class="about-visual">
+        <div class="terminal">
+          <div class="terminal-header">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span style="margin-left:8px;font-size:12px;opacity:.6">terminal</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <p><span class="t-prompt">$</span> <span class="t-cmd">whoami</span></p>
+            <p class="t-output">bytelog-team</p>
+            <p><span class="t-prompt">$</span> <span class="t-cmd">cat mission.txt</span></p>
+            <p class="t-output">Share knowledge. Build community.</p>
+            <p class="t-output">Make IT accessible for everyone.</p>
+            <p><span class="t-prompt">$</span> <span class="t-cmd">git log --oneline</span></p>
+            <p class="t-output">a1b2c3d Add new AI article</p>
+            <p class="t-output">e4f5g6h Fix CSS layout bug</p>
+            <p class="t-output">i7j8k9l Launch ByteLog v2.0</p>
+            <p><span class="t-prompt">$</span> <span class="t-cursor">█</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUBSCRIBE ===== -->
+  <section class="section section-dark" id="subscribe">
+    <div class="container subscribe-wrap">
+      <div class="subscribe-text">
+        <p class="section-tag">// залишайся в курсі</p>
+        <h2 class="section-title">Підпишись на розсилку</h2>
+        <p>Отримуй найкращі статті щотижня прямо на пошту. Без спаму.</p>
+      </div>
+      <form class="subscribe-form" id="subscribe-form" onsubmit="handleSubscribe(event)">
+        <div class="subscribe-input-wrap">
+          <input type="email" placeholder="твій@email.com" required id="subscribe-email"/>
+          <button type="submit" class="btn-primary">Підписатись</button>
+        </div>
+        <p class="subscribe-note">Більше 8,000 читачів вже підписані</p>
+        <p class="subscribe-success" id="subscribe-success" style="display:none">
+          ✓ Дякуємо! Перевір пошту для підтвердження.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="section" id="contact">
+    <div class="container contact-layout">
+      <div>
+        <p class="section-tag">// зв'язок</p>
+        <h2 class="section-title">Контакти</h2>
+        <p>Маєш питання, пропозицію або хочеш стати автором? Пиши нам!</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <span>hello@bytelog.ua</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">💬</span>
+            <span>Telegram: @bytelog_ua</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🐙</span>
+            <span>GitHub: github.com/bytelog</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" id="contact-form" onsubmit="handleContact(event)">
+        <input type="text" placeholder="Ваше ім'я" required/>
+        <input type="email" placeholder="Email" required/>
+        <select>
+          <option value="">Тема звернення</option>
+          <option>Пропозиція статті</option>
+          <option>Стати автором</option>
+          <option>Рекламна співпраця</option>
+          <option>Технічна проблема</option>
+          <option>Інше</option>
+        </select>
+        <textarea placeholder="Ваше повідомлення..." rows="5" required></textarea>
+        <button type="submit" class="btn-primary">Надіслати</button>
+        <p class="contact-success" id="contact-success" style="display:none">
+          ✓ Повідомлення надіслано! Відповімо протягом 24 годин.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLE MODAL ===== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="article-modal">
+      <button class="modal-close" id="modal-close">✕</button>
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <span class="logo-bracket">[</span>ByteLog<span class="logo-bracket">]</span>
+        </a>
+        <p>IT-блог для розробників<br/>та технічних ентузіастів.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">GitHub</a>
+          <a href="#" class="social-link">Telegram</a>
+          <a href="#" class="social-link">Twitter</a>
+          <a href="#" class="social-link">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Розділи</h4>
+        <ul>
+          <li><a href="#home">Головна</a></li>
+          <li><a href="#articles">Статті</a></li>
+          <li><a href="#categories">Категорії</a></li>
+          <li><a href="#authors">Автори</a></li>
+          <li><a href="#about">Про нас</a></li>
+          <li><a href="#contact">Контакти</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Категорії</h4>
+        <ul>
+          <li><a href="#cat-web">Веб-розробка</a></li>
+          <li><a href="#cat-ai">Штучний інтелект</a></li>
+          <li><a href="#cat-security">Кібербезпека</a></li>
+          <li><a href="#cat-devops">DevOps</a></li>
+          <li><a href="#cat-mobile">Mobile</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Інформація</h4>
+        <ul>
+          <li><a href="#">Умови використання</a></li>
+          <li><a href="#">Політика конфіденційності</a></li>
+          <li><a href="#">RSS Стрічка</a></li>
+          <li><a href="#subscribe">Розсилка</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 ByteLog. Зроблено з ❤️ в Україні.</p>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Вгору">↑</button>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
