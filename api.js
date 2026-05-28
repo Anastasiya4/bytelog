@@ -17,10 +17,10 @@
  * =============================================================
  */
 
-// ─── Утиліта: імітація затримки мережевого запиту ─────────
+// ─── Утиліта: імітація затримки мережевого запиту ───
 const delay = (ms = 300) => new Promise(resolve => setTimeout(resolve, ms));
 
-// ─── Утиліта: відповідь у форматі {ok, data, error} ──────
+// ─── Утиліта: відповідь у форматі {ok, data, error} ───
 const ok    = (data)    => ({ ok: true,  data,  error: null });
 const fail  = (message) => ({ ok: false, data: null, error: message });
 
