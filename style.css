@@ -4,7 +4,7 @@
    Естетика: технічний редакційний стиль (темна + акцент)
    ============================================================= */
 
-/* ─── CSS ЗМІННІ ──────────────────────────────────────────── */
+/* ─── CSS ЗМІННІ ─── */
 :root {
   /* Кольорова палітра */
   --clr-bg:           #0d0f14;
@@ -47,7 +47,7 @@
   --transition:       .25s cubic-bezier(.4,0,.2,1);
 }
 
-/* ─── СКИДАННЯ ────────────────────────────────────────────── */
+/* ─── СКИДАННЯ ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -81,7 +81,7 @@ input:focus, textarea:focus, select:focus {
 }
 select option { background: var(--clr-bg-3); }
 
-/* ─── УТИЛІТИ ────────────────────────────────────────────── */
+/* ─── УТИЛІТИ ─── */
 .container {
   max-width: 1200px;
   margin:    0 auto;
@@ -109,7 +109,7 @@ select option { background: var(--clr-bg-3); }
   margin-bottom: 2.5rem;
 }
 
-/* ─── КНОПКИ ─────────────────────────────────────────────── */
+/* ─── КНОПКИ ─── */
 .btn-primary {
   display:       inline-flex;
   align-items:   center;
