@@ -1,34 +1,6 @@
-/**
- * =============================================================
- *  РОЗДІЛ 8 — Серверна архітектура додатку
- *  Файл: server.js
- * =============================================================
- *
- *  Express.js сервер для IT-блогу "ByteLog".
- *  Реалізує REST API з такими маршрутами:
- *
- *    GET  /api/articles          — список статей
- *    GET  /api/articles/:id      — стаття за ID
- *    GET  /api/articles/featured — рекомендовані
- *    POST /api/articles/:id/like — лайк
- *    GET  /api/authors           — список авторів
- *    GET  /api/authors/:id       — автор за ID
- *    GET  /api/categories        — список категорій
- *    GET  /api/articles/:id/comments   — коментарі
- *    POST /api/articles/:id/comments   — новий коментар
- *    POST /api/subscribe         — підписка
- *    POST /api/contact           — форма контакту
- *    GET  /api/search?q=...      — пошук
- *    GET  /api/stats             — статистика
- *
- *  Для запуску в реальному середовищі:
- *    npm install express cors helmet morgan
- *    node server.js
- * =============================================================
- */
 
 /*
- * ─── ЗАЛЕЖНОСТІ ──────────────────────────────────────────
+ * ─── ЗАЛЕЖНОСТІ ───
  * У реальному Node.js-середовищі:
  *
  * const express = require('express');
