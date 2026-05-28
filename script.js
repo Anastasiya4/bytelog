@@ -1,20 +1,5 @@
-/**
- * =============================================================
- *  script.js — Логіка IT-блогу "ByteLog"
- * =============================================================
- *  Розділ 3: Розміщення та стилізація елементів інтерфейсу
- *  - Рендер карток статей і авторів
- *  - Фільтрація за категоріями
- *  - Пошук
- *  - Модальне вікно статті
- *  - Мобільне меню
- *  - "Завантажити більше"
- *  - Підписка / Контакти (форми)
- *  - Прокрутка до верху
- * =============================================================
- */
 
-// ─── Стан застосунку ───────────────────────────────────────
+// ─── Стан застосунку ───
 const state = {
   currentFilter:  "all",
   visibleCount:   4,          // скільки статей відображається
@@ -22,7 +7,7 @@ const state = {
   searchOpen:     false
 };
 
-// ─── DOM-елементи ──────────────────────────────────────────
+// ─── DOM-елементи ───
 const articlesGrid   = document.getElementById("articles-grid");
 const authorsGrid    = document.getElementById("authors-grid");
 const filterBtns     = document.querySelectorAll(".filter-btn");
@@ -87,9 +72,7 @@ function createArticleCard(article) {
   `;
 }
 
-/**
- * Відображає статті з урахуванням фільтра та кількості
- */
+// Відображає статті з урахуванням фільтра та кількості 
 function renderArticles() {
   const filtered = getArticlesByCategory(state.currentFilter);
   const visible  = filtered.slice(0, state.visibleCount);
