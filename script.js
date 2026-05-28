@@ -14,7 +14,7 @@
  * =============================================================
  */
 
-// ─── Стан застосунку ───────────────────────────────────────
+// ─── Стан застосунку ───
 const state = {
   currentFilter:  "all",
   visibleCount:   4,          // скільки статей відображається
@@ -22,7 +22,7 @@ const state = {
   searchOpen:     false
 };
 
-// ─── DOM-елементи ──────────────────────────────────────────
+// ─── DOM-елементи ───
 const articlesGrid   = document.getElementById("articles-grid");
 const authorsGrid    = document.getElementById("authors-grid");
 const filterBtns     = document.querySelectorAll(".filter-btn");
@@ -438,7 +438,7 @@ const observer = new IntersectionObserver(
 
 function observeElements() {
   document.querySelectorAll(
-    ".article-card, .author-card, .category-card, .hero-visual, .about-visual"
+    ".article-card, .author-card, .category-card, .hero-visual, .about-visual, .terminal"
   ).forEach(el => observer.observe(el));
 }
 
