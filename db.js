@@ -1,20 +1,3 @@
-/**
- * =============================================================
- *  РОЗДІЛ 6 — База даних для зберігання та отримання інформації
- *  Файл: db.js
- * =============================================================
- *
- *  Опис схеми реляційної бази даних для блогу "ByteLog".
- *  Реалізовано:
- *    1. SQL DDL-схема (сумісна з SQLite / PostgreSQL)
- *    2. Клас DatabaseManager — імітація DB-запитів через
- *       localStorage (для клієнтської демонстрації)
- *    3. Функції seed-ініціалізації бази даних
- *
- *  У production-версії замість localStorage
- *  використовуватиметься PostgreSQL + Node.js (pg або Prisma).
- * =============================================================
- */
 
 // ══════════════════════════════════════════════════════════
 //  1. SQL DDL — схема бази даних
@@ -26,7 +9,7 @@
  * виконання у серверному середовищі.
  */
 const DB_SCHEMA_SQL = `
--- ─── Таблиця категорій ──────────────────────────────────
+-- ─── Таблиця категорій ───
 CREATE TABLE IF NOT EXISTS categories (
     id          TEXT        PRIMARY KEY,          -- slug: 'web', 'ai', ...
     name        TEXT        NOT NULL,
@@ -36,7 +19,7 @@ CREATE TABLE IF NOT EXISTS categories (
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- ─── Таблиця авторів ────────────────────────────────────
+-- ─── Таблиця авторів ───
 CREATE TABLE IF NOT EXISTS authors (
     id          INTEGER     PRIMARY KEY AUTOINCREMENT,
     name        TEXT        NOT NULL,
@@ -50,20 +33,20 @@ CREATE TABLE IF NOT EXISTS authors (
     created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- ─── Таблиця навичок автора ─────────────────────────────
+-- ─── Таблиця навичок автора ───
 CREATE TABLE IF NOT EXISTS author_skills (
     id          INTEGER     PRIMARY KEY AUTOINCREMENT,
     author_id   INTEGER     NOT NULL REFERENCES authors(id) ON DELETE CASCADE,
     skill       TEXT        NOT NULL
 );
 
--- ─── Таблиця тегів ──────────────────────────────────────
+-- ─── Таблиця тегів ───
 CREATE TABLE IF NOT EXISTS tags (
     id          TEXT        PRIMARY KEY,          -- slug: 'javascript', 'react', ...
     label       TEXT        NOT NULL
 );
 
--- ─── Таблиця статей ─────────────────────────────────────
+-- ─── Таблиця статей ───
 CREATE TABLE IF NOT EXISTS articles (
     id          INTEGER     PRIMARY KEY AUTOINCREMENT,
     title       TEXT        NOT NULL,
@@ -88,14 +71,14 @@ CREATE INDEX IF NOT EXISTS idx_articles_category ON articles(category_id);
 CREATE INDEX IF NOT EXISTS idx_articles_author   ON articles(author_id);
 CREATE INDEX IF NOT EXISTS idx_articles_slug     ON articles(slug);
 
--- ─── Таблиця зв'язку статей і тегів (M:M) ───────────────
+-- ─── Таблиця зв'язку статей і тегів (M:M) ───
 CREATE TABLE IF NOT EXISTS article_tags (
     article_id  INTEGER     NOT NULL REFERENCES articles(id)  ON DELETE CASCADE,
     tag_id      TEXT        NOT NULL REFERENCES tags(id)       ON DELETE CASCADE,
     PRIMARY KEY (article_id, tag_id)
 );
 
--- ─── Таблиця коментарів ─────────────────────────────────
+-- ─── Таблиця коментарів ───
 CREATE TABLE IF NOT EXISTS comments (
     id          INTEGER     PRIMARY KEY AUTOINCREMENT,
     article_id  INTEGER     NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
@@ -112,7 +95,7 @@ CREATE TABLE IF NOT EXISTS comments (
 
 CREATE INDEX IF NOT EXISTS idx_comments_article ON comments(article_id);
 
--- ─── Таблиця підписників ────────────────────────────────
+-- ─── Таблиця підписників ───
 CREATE TABLE IF NOT EXISTS subscribers (
     id              INTEGER     PRIMARY KEY AUTOINCREMENT,
     email           TEXT        NOT NULL UNIQUE,
@@ -122,14 +105,14 @@ CREATE TABLE IF NOT EXISTS subscribers (
     unsubscribed_at TIMESTAMP                                -- дата відписки
 );
 
--- ─── Таблиця категорій підписника (M:M) ─────────────────
+-- ─── Таблиця категорій підписника (M:M) ───
 CREATE TABLE IF NOT EXISTS subscriber_categories (
     subscriber_id   INTEGER     NOT NULL REFERENCES subscribers(id) ON DELETE CASCADE,
     category_id     TEXT        NOT NULL REFERENCES categories(id)  ON DELETE CASCADE,
     PRIMARY KEY (subscriber_id, category_id)
 );
 
--- ─── Таблиця контактних повідомлень ─────────────────────
+-- ─── Таблиця контактних повідомлень ───
 CREATE TABLE IF NOT EXISTS contact_messages (
     id          INTEGER     PRIMARY KEY AUTOINCREMENT,
     name        TEXT        NOT NULL,
@@ -300,7 +283,7 @@ class DatabaseManager {
     });
   }
 
-  // ── Запити ──────────────────────────────────────────────
+  // ─── Запити ───
 
   /** SELECT всі статті з JOIN-даними */
   selectArticles({ category = null, limit = 10, offset = 0 } = {}) {
